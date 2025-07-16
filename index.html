@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>King the Land - Sitio Web Oficial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f8e1e7 0%, #e0f7fa 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(to right, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #e91e63;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Navigation */
+        nav {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: #e91e63;
+            background: rgba(233, 30, 99, 0.1);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: #e91e63;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 80%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1571160424680-5d3a4f91e5e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 700px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #e91e63;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(233, 30, 99, 0.6);
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #e91e63;
+            display: inline-block;
+            padding-bottom: 10px;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background: #e91e63;
+        }
+
+        /* Characters Section */
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .character-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .character-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .character-img {
+            height: 300px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .character-info {
+            padding: 20px;
+        }
+
+        .character-info h3 {
+            color: #e91e63;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        /* Songs Section */
+        .songs-list {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .song-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .song-item:last-child {
+            border-bottom: none;
+        }
+
+        .song-icon {
+            font-size: 1.5rem;
+            color: #e91e63;
+            margin-right: 20px;
+        }
+
+        .song-info h3 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .song-info p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* Summary Section */
+        .summary-content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .summary-content h3 {
+            color: #e91e63;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        /* Media Section */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .media-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .media-item:hover {
+            transform: scale(1.03);
+        }
+
+        .media-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">King the Land</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="#characters"><i class="fas fa-user-friends"></i> Personajes</a></li>
+                <li><a href="#songs"><i class="fas fa-music"></i> Canciones</a></li>
+                <li><a href="#summary"><i class="fas fa-book-open"></i> Resumen</a></li>
+                <li><a href="#media"><i class="fas fa-photo-video"></i> Multimedia</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>King the Land</h1>
+        <p>Un romance encantador en el mundo de los hoteles de lujo</p>
+        <a href="#characters" class="btn">Explorar la Serie</a>
+    </section>
+
+    <!-- Characters Section -->
+    <section id="characters">
+        <div class="container">
+            <div class="section-title">
+                <h2>Personajes Principales</h2>
+            </div>
+            <div class="characters-grid">
+                <div class="character-card">
+                    <img src="https://images.unsplash.com/photo-1595472074900-9c1a25e6b1c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Gu Won" class="character-img">
+                    <div class="character-info">
+                        <h3>Gu Won</h3>
+                        <p>El heredero del conglomerado conglomerado Cheong-A. Un hombre con un corazón de oro que se enfrenta a desafíos en su vida personal y profesional.</p>
+                    </div>
+                </div>
+                <div class="character-card">
+                    <img src="https://images.unsplash.com/photo-1595472074900-9c1a25e6b1c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Sa Rang" class="character-img">
+                    <div class="character-info">
+                        <h3>Sa Rang</h3>
+                        <p>Una recepcionista con una sonrisa radiante que se convierte en la reina de las sonrisas en el hotel King. Su sonrisa es su arma secreta, pero su vida da un giro cuando su madre se casa con el padre de Gu Won, convirtiéndose en su madrastra.</p>
+                    </div>
+                </div>
+                <div class="character-card">
+                    <img src="https://images.unsplash.com/photo-1595472074900-9c1a25e6b1c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Cha Sang Eun" class="character-img">
+                    <div class="character-info">
+                        <h3>Cha Sang Eun</h3>
+                        <p>La dueña del hotel Queen. Una mujer con una sonrisa encantadora que guarda un secreto importante sobre su pasado.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Songs Section -->
+    <section id="songs" style="background: #f9f9f9;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Banda Sonora</h2>
+            </div>
+            <div class="songs-list">
+                <div class="song-item">
+                    <div class="song-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="song-info">
+                        <h3>Love, Maybe</h3>
+                        <p>Interpretada por Yoon Shi Yoon</p>
+                    </div>
+                </div>
+                <div class="song-item">
+                    <div class="song-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="song-info">
+                        <h3>King the Land</h3>
+                        <p>Tema principal de la serie</p>
+                    </div>
+                </div>
+                <div class="song-item">
+                    <div class="song-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="song-info">
+                        <h3>My King</h3>
+                        <p>Interpretada por Im Yoon-ah</p>
+                    </div>
+                </div>
+                <div class="song-item">
+                    <div class="song-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="song-info">
+                        <h3>Queen of the Land</h3>
+                        <p>Banda sonora instrumental</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summary Section -->
+    <section id="summary">
+        <div class="container">
+            <div class="section-title">
+                <h2>Resumen de la Serie</h2>
+            </div>
+            <div class="summary-content">
+                <h3>La Historia de King the Land</h3>
+                <p>"King the Land" sigue la historia de Gu Won (Lee Jun-ho), el heredero del conglomerado Cheong-A, quien hereda el hotel King. Gu Won ha estado enojado con su familia desde que su madre abandonó el hogar, y su objetivo es encontrar a su madre y hacer que la familia pague por su abandono.</p>
+                <p>En el hotel King, conoce a Sa Rang (Im Yoon-ah), una recepcionista que siempre mantiene una sonrisa perfecta. Su sonrisa es su arma secreta, pero su vida da un giro cuando su madre se casa con el padre de Gu Won, convirtiéndose en su madrastra.</p>
+                <p>La serie explora el romance entre Gu Won y Sa Rang, quienes deben navegar por los desafíos de sus vidas personales y profesionales mientras descubren que el amor puede sanar incluso las heridas más profundas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Media Section -->
+    <section id="media" style="background: #f9f9f9;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Multimedia</h2>
+            </div>
+            <div class="media-grid">
+                <!-- Video 1: Official Trailer -->
+                <div class="media-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/8gjx2hMxZ7g" title="Trailer Oficial de King the Land" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <!-- Video 2: Scene Clip -->
+                <div class="media-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/J4k3zQvD3s4" title="Escena Destacada de King the Land" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <!-- Video 3: Behind the Scenes -->
+                <div class="media-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/9x7z8nJ4k7Y" title="Detrás de Cámaras de King the Land" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <!-- Images -->
+                <div class="media-item">
+                    <img src="https://images.unsplash.com/photo-1571160424680-5d3a4f91e5e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Imagen de King the Land">
+                </div>
+                <div class="media-item">
+                    <img src="https://images.unsplash.com/photo-1595472074900-9c1a25e6b1c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Imagen de King the Land">
+                </div>
+                <div class="media-item">
+                    <img src="https://images.unsplash.com/photo-1595472074900-9c1a25e6b1c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Imagen de King the Land">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h3>King the Land - Sitio Web de Fans</h3>
+            <p>Este sitio web es un proyecto de fan creado con fines educativos y de entretenimiento.</p>
+            <div class="copyright">
+                <p>&copy; 2023 King the Land Fan Site. Todos los derechos reservados.</p>
+                <p>Las imágenes y videos utilizados son propiedad de sus respectivos dueños.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add active class to nav items on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('.nav-menu a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href').substring(1) === current) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
